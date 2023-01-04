@@ -93,9 +93,18 @@ span {
 
 .grid-container {
   width: 500px;
-  height: 500px;
   background-color: #FFF;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: wrap;
 }
+
+
+
+
+
 
 /*Active States*/
 
@@ -108,4 +117,12 @@ span {
   border-style: solid;
   border-color: #000 #FFF #FFF #000;
   box-shadow: 0 0 0 1px #707070;
+}
+
+/*Grid styling*/
+
+.square {
+  border: 1px solid #707070;
+  background-color: lightPink;
+  margin: 0;
 }
