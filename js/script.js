@@ -39,7 +39,7 @@ buildGrid(squareNum);
 
 //Event listener for when change grid button is pushed.  Sends prompt to ask user how many squares they want grid to be, and rebuilds grid based on this
 
-changeGridButton.addEventListener("click", function () {
+window.addEventListener("resize", function () {
   gridContainer.replaceChildren();
-
+  buildGrid(squareNum);
 })
