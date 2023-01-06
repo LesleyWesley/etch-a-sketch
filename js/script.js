@@ -16,19 +16,18 @@ let squareNum = 16;
 //Builds grid based on whatever squareNum is
 
 const buildGrid = function (squareAmount) {
-  let totalSquares = 1;
+
 
   const gridWidth = gridContainer.offsetWidth - 6 - (squareAmount + 3);
   console.log(gridWidth / squareNum);
 
-  while (totalSquares <= squareAmount * squareAmount) {
+  for (let i = 0; i < squareAmount * squareAmount; i++) {
     const div = document.createElement("div");
     div.classList.add("square");
     div.style.width = `${gridWidth / squareAmount}px`;
     div.style.height = `${gridWidth / squareAmount}px`;
     gridContainer.appendChild(div);
 
-    totalSquares++;
   }
 }
 
