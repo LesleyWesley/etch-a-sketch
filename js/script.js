@@ -18,7 +18,7 @@ let squareNum = 16;
 const buildGrid = function (squareAmount) {
 
 
-  const gridWidth = gridContainer.offsetWidth - 6 - (squareAmount + 3);
+  let gridWidth = gridContainer.offsetWidth - 6 - (squareAmount + 3);
   console.log(gridWidth / squareNum);
 
   for (let i = 0; i < squareAmount * squareAmount; i++) {
@@ -37,9 +37,25 @@ buildGrid(squareNum);
 
 //================================================================
 
-//Event listener for when change grid button is pushed.  Sends prompt to ask user how many squares they want grid to be, and rebuilds grid based on this
+//Event listener to resize grid based on if screen is resized
 
 window.addEventListener("resize", function () {
   gridContainer.replaceChildren();
   buildGrid(squareNum);
+})
+
+//================================================================
+
+//Event listener to resize grid based on user input after Change Grid Size button is pushed
+
+changeGridButton.addEventListener("click", function () {
+  let userSquares = prompt("How many squares wide would you like your grid? (max 99)");
+
+  while (userSquares > 99) {
+    userSquares = prompt("Please enter a number less than 99. You can do that, right?");
+  }
+
+  gridContainer.replaceChildren();
+  buildGrid(userSquares);
+
 })
