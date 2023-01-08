@@ -37,12 +37,14 @@ buildGrid(squareNum);
 
 //================================================================
 
-//Event listener to resize grid based on if screen is resized
+//Adds ResizeObserver to change size of grid if size of grid container is changed
 
-window.addEventListener("resize", function () {
+const myObserver = new ResizeObserver(entries => {
   gridContainer.replaceChildren();
   buildGrid(squareNum);
-})
+});
+
+myObserver.observe(gridContainer);
 
 //================================================================
 
@@ -51,9 +53,6 @@ window.addEventListener("resize", function () {
 changeGridButton.addEventListener("click", function () {
   let userSquares = prompt("How many squares wide would you like your grid? (max 99)");
 
-  while (userSquares > 99) {
-    userSquares = prompt("Please enter a number less than 99. You can do that, right?");
-  }
 
   gridContainer.replaceChildren();
   buildGrid(userSquares);
