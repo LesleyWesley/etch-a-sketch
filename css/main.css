@@ -51,13 +51,34 @@ header p {
   flex-direction: column;
 }
 
+.size-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.size-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.size-button-container button {
+  width: 33%;
+}
+
 .color-section {
   margin: 3rem 0;
 }
 
+.size-section p,
 .color-section p {
   margin-top: 0;
   font-weight: bold;
+  width: 100%;
 }
 
 .color-button-container {
@@ -112,14 +133,13 @@ span {
 
 .active {
   background-color: #E8ECED;
-}
-
-.reverse-shadow {
   border-width: 2px;
   border-style: solid;
   border-color: #000 #FFF #FFF #000;
   box-shadow: 0 0 0 1px #707070;
 }
+
+
 
 /*Grid styling*/
 

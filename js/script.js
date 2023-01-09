@@ -2,30 +2,31 @@
 
 const gridContainer = document.querySelector(".grid-container");
 
-//Selects button to change the grid size
+//Selects grid density buttons
 
-const changeGridButton = document.querySelector(".change-grid");
-console.log(changeGridButton);
+const tenButton = document.querySelector(".ten");
+const twentyButton = document.querySelector(".twenty");
+const thirtyButton = document.querySelector(".thirty");
 
 //Variable for number of divs across div container
 
-let squareNum = 16;
+let squareNum = 20;
 
 //============================================================
 
 //Builds grid based on whatever squareNum is
 
-const buildGrid = function (squareAmount) {
+const buildGrid = function () {
 
 
-  let gridWidth = gridContainer.offsetWidth - 6 - (squareAmount + 3);
+  let gridWidth = gridContainer.offsetWidth - 6 - (squareNum + 3);
   console.log(gridWidth / squareNum);
 
-  for (let i = 0; i < squareAmount * squareAmount; i++) {
+  for (let i = 0; i < squareNum * squareNum; i++) {
     const div = document.createElement("div");
     div.classList.add("square");
-    div.style.width = `${gridWidth / squareAmount}px`;
-    div.style.height = `${gridWidth / squareAmount}px`;
+    div.style.width = `${gridWidth / squareNum}px`;
+    div.style.height = `${gridWidth / squareNum}px`;
     gridContainer.appendChild(div);
 
   }
@@ -33,7 +34,7 @@ const buildGrid = function (squareAmount) {
 
 //Initial building of grid when page loads
 
-buildGrid(squareNum);
+buildGrid();
 
 //================================================================
 
@@ -41,20 +42,48 @@ buildGrid(squareNum);
 
 const myObserver = new ResizeObserver(entries => {
   gridContainer.replaceChildren();
-  buildGrid(squareNum);
+  buildGrid();
 });
 
 myObserver.observe(gridContainer);
 
 //================================================================
 
-//Event listener to resize grid based on user input after Change Grid Size button is pushed
+//Function to remove active class from size buttons
 
-changeGridButton.addEventListener("click", function () {
-  let userSquares = prompt("How many squares wide would you like your grid? (max 99)");
+const removeActiveSize = function () {
+  tenButton.classList.remove("active");
+  twentyButton.classList.remove("active");
+  thirtyButton.classList.remove("active");
+};
 
+//================================================================
 
-  gridContainer.replaceChildren();
-  buildGrid(userSquares);
+//Rebuilds grid if 10x10 button is pushed
 
+tenButton.addEventListener("click", function() {
+  removeActiveSize();
+  tenButton.classList.add("active");
+
+  squareNum = 10;
+  buildGrid();
+})
+
+//Rebuilds grid if 20x20 button is pushed
+
+twentyButton.addEventListener("click", function() {
+  removeActiveSize();
+  twentyButton.classList.add("active");
+
+  squareNum = 20;
+  buildGrid();
+})
+
+//Rebuilds grid if 30x30 button is pushed
+
+thirtyButton.addEventListener("click", function() {
+  removeActiveSize();
+  thirtyButton.classList.add("active");
+  squareNum = 30;
+  buildGrid();
 })
