@@ -8,9 +8,25 @@ const tenButton = document.querySelector(".ten");
 const twentyButton = document.querySelector(".twenty");
 const thirtyButton = document.querySelector(".thirty");
 
+//Selects color buttons
+
+const classicButton = document.querySelector(".classic");
+const vaporButton = document.querySelector(".vaporwave");
+const cyberpunkButton = document.querySelector(".cyberpunk");
+const eraserButton = document.querySelector(".eraser");
+
+//Selects clear button
+
+const clearButton = document.querySelector(".clear");
+
 //Variable for number of divs across div container
 
 let squareNum = 20;
+
+//Variable for pen color
+
+let color = "#495057";
+
 
 //============================================================
 
@@ -18,17 +34,17 @@ let squareNum = 20;
 
 const buildGrid = function () {
 
-
   let gridWidth = gridContainer.offsetWidth - 6 - (squareNum + 3);
-  console.log(gridWidth / squareNum);
 
   for (let i = 0; i < squareNum * squareNum; i++) {
     const div = document.createElement("div");
     div.classList.add("square");
     div.style.width = `${gridWidth / squareNum}px`;
     div.style.height = `${gridWidth / squareNum}px`;
+    div.addEventListener("mouseover", function() {
+      div.style.backgroundColor = `${chooseRandomColor(vaporwaveArray)}`;
+    })
     gridContainer.appendChild(div);
-
   }
 }
 
@@ -38,7 +54,7 @@ buildGrid();
 
 //================================================================
 
-//Adds ResizeObserver to change size of grid if size of grid container is changed
+//Adds ResizeObserver to change density of grid if size of grid container is changed
 
 const myObserver = new ResizeObserver(entries => {
   gridContainer.replaceChildren();
@@ -56,6 +72,15 @@ const removeActiveSize = function () {
   twentyButton.classList.remove("active");
   thirtyButton.classList.remove("active");
 };
+
+//Function to remove active class from color buttons
+
+const removeActiveColor = function () {
+  classicButton.classList.remove("active");
+  vaporButton.classList.remove("active");
+  cyberpunkButton.classList.remove("active");
+  eraserButton.classList.remove("active");
+}
 
 //================================================================
 
@@ -85,5 +110,55 @@ thirtyButton.addEventListener("click", function() {
   removeActiveSize();
   thirtyButton.classList.add("active");
   squareNum = 30;
+  buildGrid();
+})
+
+//=============================================================
+
+//Functions to choose random color from array
+
+const chooseRandomColor = function (array) {
+  return array[Math.floor(Math.random() * array.length)];
+}
+
+
+//Cyberpunk Color Scheme
+
+const cyberpunkArray = ["#EEE601", "#53C5C8", "#09050C", "#CA104D", "#8A6EEA", "#495057"];
+const vaporwaveArray = ["#BFFCFF", "#DFFFFA", "#FEDAF6", "#B0E1FF", "#E5C6FF", "#AC5293"];
+
+chooseRandomColor(cyberpunkArray);
+
+//============================================================
+
+classicButton.addEventListener("click", function () {
+  removeActiveColor();
+  classicButton.classList.add("active");
+  color = "#495057";
+})
+
+vaporButton.addEventListener("click", function () {
+  removeActiveColor();
+  vaporButton.classList.add("active");
+  color = "red";
+})
+
+cyberpunkButton.addEventListener("click", function () {
+  removeActiveColor();
+  cyberpunkButton.classList.add("active");
+  color = `${chooseRandomColor(cyberpunkArray)}`;
+})
+
+eraserButton.addEventListener("click", function () {
+  removeActiveColor();
+  eraserButton.classList.add("active");
+  color = "#FFF";
+})
+
+//==========================================================
+
+//Clears grid when Clear Sketchpad button is pushed
+
+clearButton.addEventListener("click", function () {
   buildGrid();
 })
