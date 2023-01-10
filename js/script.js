@@ -27,6 +27,11 @@ let squareNum = 20;
 
 let color = "#495057";
 
+//Arrays for color schemes
+
+const cyberpunkArray = ["#EEE601", "#53C5C8", "#09050C", "#CA104D", "#495057"];
+const vaporwaveArray = ["#BFFCFF", "#DFFFFA", "#FEDAF6", "#B0E1FF", "#E5C6FF", "#AC5293"];
+
 
 //============================================================
 
@@ -42,7 +47,8 @@ const buildGrid = function () {
     div.style.width = `${gridWidth / squareNum}px`;
     div.style.height = `${gridWidth / squareNum}px`;
     div.addEventListener("mouseover", function() {
-      div.style.backgroundColor = `${chooseRandomColor(vaporwaveArray)}`;
+      chooseColor();
+      div.style.backgroundColor = `${color}`;
     })
     gridContainer.appendChild(div);
   }
@@ -122,12 +128,21 @@ const chooseRandomColor = function (array) {
 }
 
 
-//Cyberpunk Color Scheme
+//Function to choose color
 
-const cyberpunkArray = ["#EEE601", "#53C5C8", "#09050C", "#CA104D", "#8A6EEA", "#495057"];
-const vaporwaveArray = ["#BFFCFF", "#DFFFFA", "#FEDAF6", "#B0E1FF", "#E5C6FF", "#AC5293"];
+const chooseColor = function () {
+  if (classicButton.classList.contains("active")) {
+    color = "#495057";
+  } else if (vaporButton.classList.contains("active")) {
+    color = chooseRandomColor(vaporwaveArray);
+  } else if (cyberpunkButton.classList.contains("active")) {
+    color = chooseRandomColor(cyberpunkArray);
+  } else if (eraserButton.classList.contains("active")) {
+    color = "#FFF";
+  }
+}
 
-chooseRandomColor(cyberpunkArray);
+
 
 //============================================================
 
