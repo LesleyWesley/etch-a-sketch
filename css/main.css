@@ -125,7 +125,12 @@ span {
 }
 
 
-
+.epilogue {
+  position: absolute;
+  bottom: 0;
+  color: #0085A5;
+  font-weight: bold;
+}
 
 
 
